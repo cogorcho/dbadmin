@@ -9,7 +9,7 @@ Despues de bajar el proyecto, cd al proyecto y ahi
 ### pip install flask
 ### pip install mysql.connector
 
-##. Conectarse como root a la base
+## Conectarse como root a la base
 ### mysql> source sql/procs/getcolumns.sql
 ### mysql> source sql/procs/getfiles.sql
 ### mysql> source sql/procs/getparams.sql
