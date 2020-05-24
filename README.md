@@ -1,4 +1,4 @@
-#Mysql. Una vision de administrador
+# Mysql. Una vision de administrador
 
 ## Virtualizar
 Despues de bajar el proyecto, cd al proyecto y ahi 
