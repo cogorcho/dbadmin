@@ -1,11 +1,11 @@
 #Mysql. Una vision de administrador
 
-##1. Virtualizar
+## Virtualizar
 Despues de bajar el proyecto, cd al proyecto y ahi 
 ### virtualenv (-p path a python3) venv
 ### source venv/(bin o Scripts)/activate
 
-##. Instalar modulos
+## Instalar modulos
 ### pip install flask
 ### pip install mysql.connector
 
@@ -19,7 +19,7 @@ Despues de bajar el proyecto, cd al proyecto y ahi
 ### mysql> source sql/procs/gettables.sql
 ### mysql> source sql/procs/getusers.sql
 
-##. Arrancar la app
+## Arrancar la app
 ### runapp.sh
 
 
