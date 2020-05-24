@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 class="display-5 text-center">{{data.titulo}}</h1>
+
+<table id="tabla" class="table table-hover" onclick="console.log(this)">
+    <thead class="thead-dark">
+        <tr>
+            <th style="text-align:center">Privilege</th>
+            <th style="text-align:center">Is Grantable</th>
+        </tr>
+    
+    </thead>
+{% for t in data.campos %}
+    <tr>    
+        <td style="text-align:center">{{t['privilege_type']}}</td>
+        <td style="text-align:center">{{t['is_grantable']}}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}
+

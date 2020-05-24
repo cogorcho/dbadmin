@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 class="display-5 text-center">{{data.titulo}}</h1>
+
+<table id="tabla" class="table table-hover" onclick="console.log(this)">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>User</th>
+            <th>Host</th>
+            <th>DB</th>
+            <th>Command</th>
+            <th>Time</th>
+            <th>State</th>
+            <th>Info</th>
+        </tr>
+    
+    </thead>
+{% for t in data.campos %}
+    <tr>    
+        <td>{{t['ID']}}</td>
+        <td>{{t['USER']}}</td>
+        <td>{{t['HOST']}}</td>
+        <td>{{t['DB']}}</td>
+        <td>{{t['COMMAND']}}</td>
+        <td>{{t['TIME']}}</td>
+        <td>{{t['STATE']}}</td>
+        <td>{{t['INFO']}}</td>    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

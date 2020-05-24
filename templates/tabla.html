@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 class="display-5 text-center">{{data.titulo}}</h1>
+
+<form method="{{data.metodo}}" action="/{{data.tabla.lower()}}/">
+{% for t in data.campos %}
+    {% if t['parameter_mode'] == 'IN' %}
+        {% if data.method != 'GET' %}
+            {% if t['parameter_name'] != 'pid' %}
+                <div class="form-group">
+                    <label for="{{t['parameter_name']}}">{{t['parameter_name'].replace('p','').title()}}</label>
+                    <input type="{{'number' if t['vclen'] == 0 else 'text'}}" class="form-control" id="{{t['parameter_name']}}" aria-describedby="{{t['parameter_name']}}" placeholder="{{t['parameter_name'].replace('p','').title()}}">
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="form-group">
+                <label for="{{t['parameter_name']}}">{{t['parameter_name'].replace('p','').title()}}</label>
+                <input type="{{'number' if t['vclen'] == 0 else 'text'}}" class="form-control" id="{{t['parameter_name']}}" aria-describedby="{{t['parameter_name']}}" placeholder="{{t['parameter_name'].replace('pid','').title()}}">
+            </div>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+<button type="submit" class="btn btn-secondary btn-lg">Confirmar</button>
+</form>
+
+{% endblock %}

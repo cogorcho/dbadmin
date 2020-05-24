@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 class="display-5 text-center">{{data.titulo}}</h1>
+
+<table id="tabla" class="table table-hover" onclick="console.log(this)">
+    <thead class="thead-dark">
+        <tr>
+            <th class="col-md-3" style="text-align:center">Key</th>
+            <th class="col-md-3" style="text-align:center">Value</th>
+        </tr>
+    
+    </thead>
+{% for t in data.campos.keys() %}
+    <tr>    
+        <td class="col-md-3" style="text-align:left">{{t}}</td>
+        <td class="col-md-3" style="text-align:center">{{data.campos[t]}}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}
+

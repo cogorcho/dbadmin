@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 class="display-5 text-center">{{data.titulo}}</h1>
+
+<ul class="list-group">
+{% for t in data.campos %}
+    <li class="list-group-item"><a href="privs/{{t['USERNAME']}}">{{t['USERNAME']}}</a></li>   
+{% endfor %}
+</ul>
+
+{% endblock %}

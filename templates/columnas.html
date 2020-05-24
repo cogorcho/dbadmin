@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 class="display-5 text-center">{{data.titulo}}</h1>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Columna</th>
+            <th>Tipo</th>
+            <th>Nullable</th>
+            <th>Octet Length</th>
+            <th>Charset</th>
+            <th>Collation</th>
+        </tr>
+    
+    </thead>
+{% for t in data.campos %}
+    <tr>    
+        <td>{{t['column_name']}}</td>
+        {% if t['vclen'] == 0 %}
+            <td>{{t['data_type']}}</td>
+        {% else %}
+            <td>{{t['data_type']}} ({{t['vclen']}})</td>
+        {% endif %}
+        <td>{{t['is_nullable']}}</td>
+        <td>{{t['octet_length']}}</td>
+        <td>{{t['character_set_name']}}</td>
+        <td>{{t['collation_name']}}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 class="display-3 text-center">{{data.titulo}}</h1>
+
+<ul>
+{% for t in data.tablas %}
+    <li>
+        <h3>{{t}}</h3>
+        <div>
+        {% for m in data.metodos %}
+            <button type="button" class="btn btn-primary" onclick="location.href='generar/{{t}}/{{m}}'" }>{{m}}</button>
+        {% endfor %}
+        </div>
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}
