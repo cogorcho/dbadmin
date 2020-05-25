@@ -1,4 +1,5 @@
 import os
+import modulos.Config as cfg
 
 cfg = None
 db = None
@@ -14,35 +15,33 @@ def armar(data, sep):
     return [dout]
 
 def extended_status():
-    cmd = "mysqladmin -u root -pneheik extended-status  | grep -v '+---' | sed 's/ //g;  s/^|//; s/|$//'"
+    cmd = "mysqladmin -u %s -p%s extended-status  | grep -v '+---' | sed 's/ //g;  s/^|//; s/|$//'" % ( 
+get_config('DBROOTUSER'), get_config('DBROOTPWD'))
     data = os.popen(cmd).read().split('\n')
     return armar(data,'|')
 
 def variables():
-    cmd = "mysqladmin -u root -pneheik variables | grep -v '+---' | sed 's/ //g;  s/^|//; s/|$//'"
+    cmd = "mysqladmin -u %s -p%s variables | grep -v '+---' | sed 's/ //g;  s/^|//; s/|$//'" % (get_config('DBROOTUSER'), get_config('DBROOTPWD'))
     data = os.popen(cmd).read().split('\n')
     return armar(data,'|')
 
 def ping():
-    cmd = "mysqladmin -u root -pneheik ping 2> /dev/null"
+    cmd = "mysqladmin -u %s -p%s ping 2> /dev/null" % (get_config('DBROOTUSER'), get_config('DBROOTPWD'))
     data = os.popen(cmd).read()
     return data
 
 def status():
-    cmd = "mysqladmin -u root -pneheik status 2> /dev/null | sed 's/  /|/g' "
+    cmd = "mysqladmin -u %s -p%s status 2> /dev/null | sed 's/  /|/g'" % (get_config('DBROOTUSER'), get_config('DBROOTPWD'))
     data = os.popen(cmd).read().split('|')
     return armar(data,':')
 
 def version():
-    cmd = 'mysqladmin -u root -pneheik version  2> /dev/null | grep "Server version" | sed "s/\t/|/"'
+    cmd = 'mysqladmin -u %s -p%s version  2> /dev/null | grep "Server version" | sed "s/\t/|/"' % (get_config('DBROOTUSER'), get_config('DBROOTPWD'))
     data = os.popen(cmd).read()
     return armar((data.strip().replace('\t',''),),'|')
 
 def processes():
     return db.get_data('GETPROCESSES', ())
-    #cmd = "mysqladmin -u root -pneheik processlist  2> /dev/null "
-    #data = os.popen(cmd).read().split('\n')
-    #return data
 
 def get_config(key):
     return cfg[key]
@@ -66,7 +65,5 @@ def get_users():
     return db.get_data('GETUSERS', ())
 
 def get_privs(username):
-    print('get_privs', username)
     rows = db.get_data('GETPRIVS', (username,))
-    print(rows)
     return rows
